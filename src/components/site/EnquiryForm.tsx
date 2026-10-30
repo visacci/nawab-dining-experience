@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { Link } from "@tanstack/react-router";
 import { CheckCircle2, Loader2, ArrowRight } from "lucide-react";
-import { submitEnquiry, enquirySchema } from "@/lib/enquiries.functions";
+import { submitEnquiry, enquirySchema } from "@/lib/enquiries";
 import { BISTRO } from "@/lib/site";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -78,7 +78,7 @@ export function EnquiryForm({
     setStatus("loading");
     setServerError("");
     try {
-      await submitEnquiry({ data: parsed.data! });
+      await submitEnquiry(parsed.data!);
       setStatus("done");
     } catch (err) {
       setServerError(err instanceof Error ? err.message : "Something went wrong.");
