@@ -68,7 +68,7 @@ export function Header() {
                       <Link
                         key={c.label}
                         to={c.to}
-                        hash={c.hash}
+                        {...(c.hash ? { hash: c.hash } : {})}
                         className="block px-3 py-2.5 text-sm text-ink transition-all hover:translate-x-1 hover:text-primary"
                       >
                         {c.label}
@@ -152,7 +152,7 @@ export function Header() {
                           className="overflow-hidden"
                         >
                           {item.children.map((c) => (
-                            <Link key={c.label} to={c.to} hash={c.hash} onClick={() => setOpen(false)} className="block py-2 pl-4 text-sm text-on-ink-muted hover:text-primary">
+                            <Link key={c.label} to={c.to} {...(c.hash ? { hash: c.hash } : {})} onClick={() => setOpen(false)} className="block py-2 pl-4 text-sm text-on-ink-muted hover:text-primary">
                               {c.label}
                             </Link>
                           ))}
