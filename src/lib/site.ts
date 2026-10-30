@@ -22,10 +22,9 @@ export const directionsUrl = (q: string) =>
 export const embedUrl = (q: string) =>
   `https://maps.google.com/maps?q=${encodeURIComponent(q)}&z=15&output=embed`;
 
-export type NavItem = { label: string; to: string; hash?: string; children?: NavItem[] };
+export type NavItem = { label: string; to?: string; hash?: string; children?: NavItem[] };
 
 export const NAV: NavItem[] = [
-  { label: "Home", to: "/" },
   {
     label: "Nawab Asian Bistro",
     to: "/asian-bistro",
@@ -47,7 +46,6 @@ export const NAV: NavItem[] = [
       { label: "Gardens", to: "/nawab-gardens", hash: "gardens" },
     ],
   },
-  { label: "About Us", to: "/about" },
   {
     label: "Services & Experiences",
     to: "/services",
@@ -59,7 +57,13 @@ export const NAV: NavItem[] = [
       { label: "Dining Experiences", to: "/services", hash: "dining" },
     ],
   },
-  { label: "Blog", to: "/blog" },
-  { label: "FAQs", to: "/faqs" },
+  {
+    label: "Resources",
+    children: [
+      { label: "Blog", to: "/blog" },
+      { label: "FAQs", to: "/faqs" },
+      { label: "About Us", to: "/about" },
+    ],
+  },
   { label: "Contact Us", to: "/contact" },
 ];

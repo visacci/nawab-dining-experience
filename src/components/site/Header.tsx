@@ -3,18 +3,15 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown, Menu, Phone, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { NAV, BISTRO } from "@/lib/site";
+import logoOnDark from "@/assets/nawab-logo.png";
+import logoOnLight from "@/assets/nawab-logo-ink.png";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 export function Logo({ light }: { light?: boolean }) {
   return (
-    <Link to="/" className="flex flex-col leading-none" aria-label="Nawab home">
-      <span className={cn("font-serif text-3xl tracking-[0.12em]", light ? "text-on-ink" : "text-ink")}>
-        NAWAB
-      </span>
-      <span className="mt-1 text-[0.55rem] uppercase tracking-[0.42em] text-primary">
-        Bistro · Gardens
-      </span>
+    <Link to="/" className="inline-flex shrink-0 items-center" aria-label="Nawab home">
+      <img src={light ? logoOnDark : logoOnLight} alt="" className="h-12 w-auto sm:h-14" />
     </Link>
   );
 }
@@ -48,37 +45,47 @@ export function Header() {
         <Logo light={light} />
 
         <nav className="hidden items-center gap-7 xl:flex" aria-label="Main">
-          {NAV.map((item) => (
-            <div key={item.label} className="group relative">
-              <Link
-                to={item.to}
-                activeOptions={{ exact: item.to === "/" }}
-                className={cn(
-                  "link-underline flex items-center gap-1 py-2 text-[0.72rem] uppercase tracking-[0.18em] transition-colors data-[status=active]:text-primary",
-                  light ? "text-on-ink" : "text-ink",
+          {NAV.map((item) => {
+            const childActive = item.children?.some((c) => c.to && pathname === c.to) ?? false;
+            const triggerClass = cn(
+              "link-underline flex items-center gap-1 py-2 text-[0.72rem] uppercase tracking-[0.18em] transition-colors data-[status=active]:text-primary",
+              light ? "text-on-ink" : "text-ink",
+              !item.to && childActive && "text-primary",
+            );
+            return (
+              <div key={item.label} className="group relative">
+                {item.to ? (
+                  <Link to={item.to} activeOptions={{ exact: item.to === "/" }} className={triggerClass}>
+                    {item.label}
+                    {item.children && <ChevronDown className="h-3 w-3 transition-transform group-hover:rotate-180" />}
+                  </Link>
+                ) : (
+                  <button type="button" className={cn(triggerClass, "cursor-pointer")} aria-haspopup="true">
+                    {item.label}
+                    {item.children && <ChevronDown className="h-3 w-3 transition-transform group-hover:rotate-180" />}
+                  </button>
                 )}
-              >
-                {item.label}
-                {item.children && <ChevronDown className="h-3 w-3 transition-transform group-hover:rotate-180" />}
-              </Link>
-              {item.children && (
-                <div className="invisible absolute left-1/2 top-full z-50 w-64 -translate-x-1/2 translate-y-2 pt-4 opacity-0 transition-all duration-300 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
-                  <div className="border-t-2 border-primary bg-paper p-3 shadow-elegant">
-                    {item.children.map((c) => (
-                      <Link
-                        key={c.label}
-                        to={c.to}
-                        {...(c.hash ? { hash: c.hash } : {})}
-                        className="block px-3 py-2.5 text-sm text-ink transition-all hover:translate-x-1 hover:text-primary"
-                      >
-                        {c.label}
-                      </Link>
-                    ))}
+                {item.children && (
+                  <div className="invisible absolute left-1/2 top-full z-50 w-64 -translate-x-1/2 translate-y-2 pt-4 opacity-0 transition-all duration-300 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+                    <div className="border-t-2 border-primary bg-paper p-3 shadow-elegant">
+                      {item.children.map((c) =>
+                        c.to ? (
+                          <Link
+                            key={c.label}
+                            to={c.to}
+                            {...(c.hash ? { hash: c.hash } : {})}
+                            className="block px-3 py-2.5 text-sm text-ink transition-all hover:translate-x-1 hover:text-primary"
+                          >
+                            {c.label}
+                          </Link>
+                        ) : null,
+                      )}
+                    </div>
                   </div>
-                </div>
-              )}
-            </div>
-          ))}
+                )}
+              </div>
+            );
+          })}
         </nav>
 
         <div className="flex items-center gap-3">
@@ -120,48 +127,75 @@ export function Header() {
                 </button>
               </div>
               <nav className="flex-1 overflow-y-auto px-6">
-                {NAV.map((item, i) => (
-                  <motion.div
-                    key={item.label}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.1 + i * 0.04 }}
-                    className="border-b border-on-ink/10"
-                  >
-                    <div className="flex items-center justify-between">
-                      <Link to={item.to} className="block py-4 font-serif text-2xl data-[status=active]:text-primary" activeOptions={{ exact: item.to === "/" }}>
-                        {item.label}
-                      </Link>
-                      {item.children && (
-                        <button
-                          onClick={() => setExpanded(expanded === item.label ? null : item.label)}
-                          aria-label={`Expand ${item.label}`}
-                          aria-expanded={expanded === item.label}
-                          className="p-2"
-                        >
-                          <ChevronDown className={cn("h-5 w-5 transition-transform", expanded === item.label && "rotate-180")} />
-                        </button>
-                      )}
-                    </div>
-                    <AnimatePresence>
-                      {item.children && expanded === item.label && (
-                        <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          className="overflow-hidden"
-                        >
-                          {item.children.map((c) => (
-                            <Link key={c.label} to={c.to} {...(c.hash ? { hash: c.hash } : {})} onClick={() => setOpen(false)} className="block py-2 pl-4 text-sm text-on-ink-muted hover:text-primary">
-                              {c.label}
-                            </Link>
-                          ))}
-                          <div className="h-3" />
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </motion.div>
-                ))}
+                {NAV.map((item, i) => {
+                  const childActive = item.children?.some((c) => c.to && pathname === c.to) ?? false;
+                  const toggle = () => setExpanded(expanded === item.label ? null : item.label);
+                  return (
+                    <motion.div
+                      key={item.label}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.1 + i * 0.04 }}
+                      className="border-b border-on-ink/10"
+                    >
+                      <div className="flex items-center justify-between">
+                        {item.to ? (
+                          <Link
+                            to={item.to}
+                            className="block py-4 font-serif text-2xl data-[status=active]:text-primary"
+                            activeOptions={{ exact: item.to === "/" }}
+                          >
+                            {item.label}
+                          </Link>
+                        ) : (
+                          <button
+                            type="button"
+                            onClick={toggle}
+                            aria-expanded={expanded === item.label}
+                            className={cn("block py-4 text-left font-serif text-2xl", childActive && "text-primary")}
+                          >
+                            {item.label}
+                          </button>
+                        )}
+                        {item.children && (
+                          <button
+                            onClick={toggle}
+                            aria-label={`Expand ${item.label}`}
+                            aria-expanded={expanded === item.label}
+                            className="p-2"
+                          >
+                            <ChevronDown className={cn("h-5 w-5 transition-transform", expanded === item.label && "rotate-180")} />
+                          </button>
+                        )}
+                      </div>
+                      <AnimatePresence>
+                        {item.children && expanded === item.label && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            className="overflow-hidden"
+                          >
+                            {item.children.map((c) =>
+                              c.to ? (
+                                <Link
+                                  key={c.label}
+                                  to={c.to}
+                                  {...(c.hash ? { hash: c.hash } : {})}
+                                  onClick={() => setOpen(false)}
+                                  className="block py-2 pl-4 text-sm text-on-ink-muted hover:text-primary"
+                                >
+                                  {c.label}
+                                </Link>
+                              ) : null,
+                            )}
+                            <div className="h-3" />
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </motion.div>
+                  );
+                })}
               </nav>
               <div className="space-y-3 p-6">
                 <Button asChild variant="brand" size="xl" className="w-full">
