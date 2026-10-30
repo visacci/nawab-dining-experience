@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AsianBistroRouteImport } from './routes/asian-bistro'
+import { Route as BlogRouteImport } from './routes/blog'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as FaqsRouteImport } from './routes/faqs'
 import { Route as NawabGardensRouteImport } from './routes/nawab-gardens'
@@ -33,6 +34,11 @@ const AboutRoute = AboutRouteImport.update({
 const AsianBistroRoute = AsianBistroRouteImport.update({
   id: '/asian-bistro',
   path: '/asian-bistro',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogRoute = BlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -75,6 +81,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/asian-bistro': typeof AsianBistroRoute
+  '/blog': typeof BlogRoute
   '/contact': typeof ContactRoute
   '/faqs': typeof FaqsRoute
   '/nawab-gardens': typeof NawabGardensRoute
@@ -87,6 +94,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/asian-bistro': typeof AsianBistroRoute
+  '/blog': typeof BlogRoute
   '/contact': typeof ContactRoute
   '/faqs': typeof FaqsRoute
   '/nawab-gardens': typeof NawabGardensRoute
@@ -100,6 +108,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/asian-bistro': typeof AsianBistroRoute
+  '/blog': typeof BlogRoute
   '/contact': typeof ContactRoute
   '/faqs': typeof FaqsRoute
   '/nawab-gardens': typeof NawabGardensRoute
@@ -114,6 +123,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/asian-bistro'
+    | '/blog'
     | '/contact'
     | '/faqs'
     | '/nawab-gardens'
@@ -126,6 +136,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/asian-bistro'
+    | '/blog'
     | '/contact'
     | '/faqs'
     | '/nawab-gardens'
@@ -138,6 +149,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/asian-bistro'
+    | '/blog'
     | '/contact'
     | '/faqs'
     | '/nawab-gardens'
@@ -151,6 +163,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   AsianBistroRoute: typeof AsianBistroRoute
+  BlogRoute: typeof BlogRoute
   ContactRoute: typeof ContactRoute
   FaqsRoute: typeof FaqsRoute
   NawabGardensRoute: typeof NawabGardensRoute
@@ -181,6 +194,13 @@ declare module '@tanstack/react-router' {
       path: '/asian-bistro'
       fullPath: '/asian-bistro'
       preLoaderRoute: typeof AsianBistroRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog': {
+      id: '/blog'
+      path: '/blog'
+      fullPath: '/blog'
+      preLoaderRoute: typeof BlogRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -239,6 +259,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   AsianBistroRoute: AsianBistroRoute,
+  BlogRoute: BlogRoute,
   ContactRoute: ContactRoute,
   FaqsRoute: FaqsRoute,
   NawabGardensRoute: NawabGardensRoute,

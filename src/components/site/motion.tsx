@@ -82,7 +82,7 @@ export function ArrowLink({
   return (
     <Link
       to={to}
-      hash={hash}
+      {...(hash ? { hash } : {})}
       className={cn(
         "group eyebrow inline-flex items-center gap-3 text-current transition-colors hover:text-primary",
         className,

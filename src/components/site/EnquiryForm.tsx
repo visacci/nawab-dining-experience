@@ -61,7 +61,7 @@ export function EnquiryForm({
     const fd = new FormData(e.currentTarget);
     const raw: Record<string, unknown> = { kind };
     fd.forEach((v, k) => (raw[k] = String(v)));
-    if (!raw.guests) delete raw.guests;
+    if (!raw["guests"]) delete raw["guests"];
 
     const errs: Partial<Record<Field, string>> = {};
     for (const f of REQUIRED[kind]) if (!String(raw[f] ?? "").trim()) errs[f] = "This field is required";
