@@ -2,9 +2,9 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PageHero } from "@/components/site/PageHero";
-import { FeatureSplit, LocationSection } from "@/components/site/blocks";
-import { ImageReveal, PhotoNote, Reveal, SectionLabel } from "@/components/site/motion";
-import { IMG } from "@/lib/images";
+import { FeatureSplit, LocationSection, PhotoGrid } from "@/components/site/blocks";
+import { ImageReveal, Reveal, SectionLabel } from "@/components/site/motion";
+import { GARDENS_IMG, IMG } from "@/lib/images";
 import { GARDENS } from "@/lib/site";
 
 export const Route = createFileRoute("/nawab-gardens")({
@@ -25,7 +25,7 @@ function Gardens() {
       <PageHero
         tall
         image={IMG.garden}
-        alt="Dining tables on a lawn beneath leafy trees"
+        alt="Outdoor tables on the lawn in front of the thatched dining room at Nawab Gardens"
         eyebrow="Nawab Gardens · Bugolobi"
         title={<>Where Nature Meets <em className="text-primary-glow">Exceptional</em> Dining.</>}
         text="Discover authentic Indian cuisine in a peaceful garden setting at Nawab Gardens, Bugolobi."
@@ -47,14 +47,13 @@ function Gardens() {
         id="restaurant" index="01" label="The Restaurant" title="Authentic Indian cuisine"
         text="Generous, aromatic Indian cooking served with warm hospitality in a calm, relaxed dining room — made for families, friends and unhurried meals."
         points={["Indian cuisine", "Warm hospitality", "Peaceful atmosphere", "Family dining", "Long lunches", "Gatherings with friends"]}
-        image={IMG.indian} alt="Biryani in a copper pot with curries and naan"
+        image={IMG.diningRoom} alt="The dining room at Nawab Gardens, opening onto the lawn"
       />
 
       <section id="gardens" className="scroll-mt-24 bg-ink text-on-ink">
         <div className="relative h-[100svh] min-h-[640px] overflow-hidden">
-          <img src={IMG.garden} alt="Lush garden with outdoor dining" loading="lazy" className="absolute inset-0 h-full w-full scale-105 object-cover" />
+          <img src={IMG.garden} alt="The lawn and thatched roof at Nawab Gardens" loading="lazy" className="absolute inset-0 h-full w-full scale-105 object-cover" />
           <div className="bg-hero-overlay absolute inset-0" />
-          <PhotoNote />
           <div className="container-x relative flex h-full flex-col justify-center">
             <Reveal className="max-w-3xl">
               <SectionLabel className="text-primary-glow">The Gardens · Signature</SectionLabel>
@@ -75,30 +74,46 @@ function Gardens() {
               ))}
             </ul>
           </Reveal>
-          <ImageReveal src={IMG.wedding} alt="A candlelit table set in a garden" className="aspect-[4/5]" />
+          <ImageReveal src={GARDENS_IMG.evening} alt="Tables set on the lawn in the evening" className="aspect-[4/5]" />
         </div>
       </section>
 
       <FeatureSplit
         id="bar" index="02" label="The Bar" title="A relaxed place to gather" reverse
         text="The bar at Nawab Gardens offers an easy-going spot to meet, wait for friends or wind down after a meal. Ask our team about the current selection."
-        image={IMG.bar} alt="A warmly lit bar"
+        image={IMG.deck} alt="Covered deck seating looking onto the garden"
       />
 
       <FeatureSplit
         id="rooftop" index="03" label="Rooftop Terrace" title="An elevated corner of the gardens" dark
-        text="A rooftop terrace is part of the Nawab Gardens venue. Authentic photographs of this space will be added soon — please contact us for details about using it for your visit or occasion."
-        image={IMG.rooftop} alt="Illustrative rooftop terrace at dusk"
+        text="Evenings at Nawab Gardens move outdoors, with tables set across the lawn beside the thatched dining room. Ask our team about the rooftop terrace when you are planning a visit or a private gathering."
+        image={GARDENS_IMG.evening} alt="Tables set on the lawn at Nawab Gardens in the evening"
       />
 
       <FeatureSplit
         id="conference" index="04" label="Conference / Party Room" title="Space for every gathering" reverse
         text="A versatile room for meetings, private parties and celebrations, supported by the Nawab Gardens kitchen and team. Share your plans and we'll help shape the occasion."
         points={["Meetings", "Private parties", "Birthdays & anniversaries", "Family celebrations"]}
-        image={IMG.privateRoom} alt="Private room with a long set table"
+        image={GARDENS_IMG.lawnSet} alt="Tables arranged on the lawn for a gathering"
       >
         <Button asChild variant="brand" size="xl"><Link to="/services" hash="enquire">Enquire about events <ArrowRight /></Link></Button>
       </FeatureSplit>
+
+      <PhotoGrid
+        label="The Gardens"
+        images={[
+          { src: GARDENS_IMG.lawn, alt: "The thatched dining room and lawn" },
+          { src: GARDENS_IMG.diningRoom, alt: "Indoor seating opening onto the garden" },
+          { src: GARDENS_IMG.deck, alt: "The covered deck" },
+          { src: GARDENS_IMG.lawnSet, alt: "Tables set on the lawn" },
+          { src: GARDENS_IMG.evening, alt: "The garden in the evening" },
+          { src: GARDENS_IMG.guests, alt: "Guests dining on the lawn" },
+          { src: GARDENS_IMG.bowls, alt: "Curries, rice and sides" },
+          { src: GARDENS_IMG.naan, alt: "Naan and rice" },
+          { src: GARDENS_IMG.plates, alt: "A table of curries and sides" },
+          { src: GARDENS_IMG.meatballs, alt: "A plate of meatballs" },
+        ]}
+      />
 
       <LocationSection venue={GARDENS.name} address={GARDENS.address} phone={null} mapsQuery={GARDENS.mapsQuery} />
     </div>

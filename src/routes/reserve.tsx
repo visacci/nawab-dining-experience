@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Phone, Mail, Info } from "lucide-react";
 import { EnquiryForm } from "@/components/site/EnquiryForm";
-import { PhotoNote, Reveal, SectionLabel } from "@/components/site/motion";
+import { Reveal, SectionLabel } from "@/components/site/motion";
 import { IMG } from "@/lib/images";
 import { BISTRO } from "@/lib/site";
 
@@ -21,9 +21,8 @@ function Reserve() {
   return (
     <section className="grid min-h-screen bg-paper lg:grid-cols-2">
       <div className="relative min-h-[50vh] overflow-hidden bg-ink text-on-ink">
-        <img src={IMG.rooftop} alt="Rooftop terrace at dusk" className="animate-slow-zoom absolute inset-0 h-full w-full object-cover" />
+        <img src={IMG.rooftop} alt="The rooftop terrace at Nawab Asian Bistro" className="animate-slow-zoom absolute inset-0 h-full w-full object-cover" />
         <div className="bg-hero-overlay absolute inset-0" />
-        <PhotoNote />
         <div className="relative flex h-full flex-col justify-end p-8 pt-40 md:p-16">
           <SectionLabel className="text-primary-glow">Reservations</SectionLabel>
           <h1 className="display mt-6 text-5xl md:text-7xl">Your Table Is Waiting.</h1>

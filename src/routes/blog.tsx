@@ -17,7 +17,7 @@ export const Route = createFileRoute("/blog")({
 function Blog() {
   return (
     <>
-      <PageHero image={IMG.veg} alt="Colourful dishes" eyebrow="Blog" title={<>Stories, Flavours & <em className="text-primary-glow">Experiences.</em></>} />
+      <PageHero image={IMG.heroFood} alt="A spread of dishes from the Nawab kitchen" eyebrow="Blog" title={<>Stories, Flavours & <em className="text-primary-glow">Experiences.</em></>} />
       <section className="bg-paper py-28 text-center">
         <div className="container-x max-w-2xl">
           <h2 className="text-4xl">Our first stories are on their way.</h2>

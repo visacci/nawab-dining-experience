@@ -45,13 +45,16 @@ export function Footer() {
           <div className="space-y-8 text-sm">
             <div>
               <p className="font-serif text-xl">{BISTRO.name}</p>
-              <p className="mt-2 flex gap-2 text-on-ink-muted"><MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary" />{BISTRO.address}</p>
-              <a href={`tel:${BISTRO.tel}`} className="mt-2 flex gap-2 text-on-ink-muted hover:text-on-ink"><Phone className="mt-0.5 h-4 w-4 shrink-0 text-primary" />{BISTRO.phone}</a>
+                <p className="mt-2 flex gap-2 text-on-ink-muted"><MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary" />{BISTRO.address}</p>
+                <a href={`tel:${BISTRO.tel}`} className="mt-2 flex gap-2 text-on-ink-muted hover:text-on-ink"><Phone className="mt-0.5 h-4 w-4 shrink-0 text-primary" />{BISTRO.phone}</a>
+                <a href={`tel:${BISTRO.phone2}`} className="mt-2 flex gap-2 text-on-ink-muted hover:text-on-ink"><Phone className="mt-0.5 h-4 w-4 shrink-0 text-primary" />{BISTRO.phone2}</a>
+
             </div>
             <div>
               <p className="font-serif text-xl">{GARDENS.name}</p>
               <p className="mt-2 flex gap-2 text-on-ink-muted"><MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary" />{GARDENS.address}</p>
-              <p className="mt-2 flex gap-2 text-on-ink-muted"><Phone className="mt-0.5 h-4 w-4 shrink-0 text-primary" />Phone to be announced — <Link to="/contact" className="underline hover:text-on-ink">send an enquiry</Link></p>
+              <p className="mt-2 flex gap-2 text-on-ink-muted"><Phone className="mt-0.5 h-4 w-4 shrink-0 text-primary" />+256772727777 — <Link to="/contact" className="underline hover:text-on-ink">send an enquiry</Link></p>
+              <p className="mt-2 flex gap-2 text-on-ink-muted"><Phone className="mt-0.5 h-4 w-4 shrink-0 text-primary" />+256709743524 — <Link to="/contact" className="underline hover:text-on-ink">send an enquiry</Link></p>
             </div>
           </div>
         </div>

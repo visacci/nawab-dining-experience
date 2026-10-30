@@ -102,16 +102,3 @@ export function SectionLabel({ children, className }: { children: ReactNode; cla
     </div>
   );
 }
-
-export function PhotoNote({ className }: { className?: string }) {
-  return (
-    <span
-      className={cn(
-        "pointer-events-none absolute bottom-3 right-3 z-10 rounded-sm bg-overlay px-2 py-1 text-[10px] uppercase tracking-[0.18em] text-on-ink-muted backdrop-blur",
-        className,
-      )}
-    >
-      Illustrative image
-    </span>
-  );
-}

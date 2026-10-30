@@ -1,6 +1,5 @@
 import { motion, useReducedMotion } from "framer-motion";
 import type { ReactNode } from "react";
-import { PhotoNote } from "./motion";
 import { cn } from "@/lib/utils";
 
 export function PageHero({
@@ -27,7 +26,6 @@ export function PageHero({
     <section className={cn("relative flex items-end overflow-hidden bg-ink text-on-ink", tall ? "min-h-[100svh]" : "min-h-[78svh]")}>
       <img src={image} alt={alt} className="animate-slow-zoom absolute inset-0 h-full w-full object-cover" />
       <div className="bg-hero-overlay absolute inset-0" />
-      <PhotoNote />
       <div className="container-x relative pb-20 pt-40 md:pb-28">
         <motion.div {...anim(0.1)} className="eyebrow flex items-center gap-3 text-primary-glow">
           <span className="h-px w-10 bg-primary-glow" />

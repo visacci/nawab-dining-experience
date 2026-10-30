@@ -66,17 +66,37 @@ export function Header() {
                   </button>
                 )}
                 {item.children && (
-                  <div className="invisible absolute left-1/2 top-full z-50 w-64 -translate-x-1/2 translate-y-2 pt-4 opacity-0 transition-all duration-300 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
-                    <div className="border-t-2 border-primary bg-paper p-3 shadow-elegant">
+                  <div
+                    className={cn(
+                      "invisible absolute top-full z-50 translate-y-2 pt-4 opacity-0 transition-all duration-300 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100",
+                      item.children.some((c) => c.image) ? "left-0 w-[28rem]" : "left-1/2 w-64 -translate-x-1/2",
+                    )}
+                  >
+                    <div
+                      className={cn(
+                        "border-t-2 border-primary bg-paper shadow-elegant",
+                        item.children.some((c) => c.image) ? "grid grid-cols-2 gap-2 p-3" : "p-3",
+                      )}
+                    >
                       {item.children.map((c) =>
                         c.to ? (
                           <Link
                             key={c.label}
                             to={c.to}
                             {...(c.hash ? { hash: c.hash } : {})}
-                            className="block px-3 py-2.5 text-sm text-ink transition-all hover:translate-x-1 hover:text-primary"
+                            className={cn(
+                              "text-ink transition-all hover:text-primary",
+                              c.image ? "block" : "block px-3 py-2.5 text-sm hover:translate-x-1",
+                            )}
                           >
-                            {c.label}
+                            {c.image ? (
+                              <>
+                                <img src={c.image} alt="" className="aspect-[4/3] w-full object-cover" />
+                                <span className="mt-2 block px-1 pb-1 text-[0.68rem] uppercase tracking-[0.14em]">{c.label}</span>
+                              </>
+                            ) : (
+                              c.label
+                            )}
                           </Link>
                         ) : null,
                       )}
@@ -183,8 +203,9 @@ export function Header() {
                                   to={c.to}
                                   {...(c.hash ? { hash: c.hash } : {})}
                                   onClick={() => setOpen(false)}
-                                  className="block py-2 pl-4 text-sm text-on-ink-muted hover:text-primary"
+                                  className="flex items-center gap-3 py-2 pl-4 text-sm text-on-ink-muted hover:text-primary"
                                 >
+                                  {c.image ? <img src={c.image} alt="" className="h-12 w-16 shrink-0 object-cover" /> : null}
                                   {c.label}
                                 </Link>
                               ) : null,

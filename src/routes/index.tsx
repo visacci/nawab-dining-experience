@@ -3,9 +3,9 @@ import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion
 import { useRef } from "react";
 import { ArrowRight, ChefHat, HeartHandshake, Trees, Leaf, PartyPopper, Car, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { ArrowLink, ImageReveal, PhotoNote, Reveal, SectionLabel } from "@/components/site/motion";
+import { ArrowLink, ImageReveal, Reveal, SectionLabel } from "@/components/site/motion";
 import { ReserveBand } from "@/components/site/blocks";
-import { IMG } from "@/lib/images";
+import { BISTRO_IMG, IMG } from "@/lib/images";
 import { BISTRO, GARDENS } from "@/lib/site";
 
 export const Route = createFileRoute("/")({
@@ -25,9 +25,8 @@ function Hero() {
   const words = "Where Flavour Meets Experience.".split(" ");
   return (
     <section className="relative flex min-h-[100svh] items-center overflow-hidden bg-ink text-on-ink">
-      <img src={IMG.heroFood} alt="A spread of Pan-Asian dishes on a dark table" className="animate-slow-zoom absolute inset-0 h-full w-full object-cover" />
+      <img src={IMG.bar} alt="The bar and rooftop terrace at Nawab Asian Bistro" className="animate-slow-zoom absolute inset-0 h-full w-full object-cover" />
       <div className="bg-hero-overlay absolute inset-0" />
-      <PhotoNote />
       <div className="container-x relative pt-24">
         <motion.p
           initial={reduce ? false : { opacity: 0, y: 20 }}
@@ -94,9 +93,9 @@ function Intro() {
           <ArrowLink to="/about" className="mt-10 text-ink">About Nawab</ArrowLink>
         </Reveal>
         <div className="relative lg:col-span-7">
-          <ImageReveal src={IMG.interior} alt="An elegant restaurant interior with green banquettes and brass lights" className="ml-auto aspect-[4/5] w-4/5" />
+          <ImageReveal src={BISTRO_IMG.counter} alt="The Nawab counters at Acacia Mall" className="ml-auto aspect-[4/5] w-4/5" />
           <div className="absolute -bottom-10 left-0 w-1/2 border-8 border-paper shadow-elegant">
-            <ImageReveal src={IMG.curry} alt="A bowl of curry garnished with coriander" className="aspect-square" parallax={false} />
+            <ImageReveal src={IMG.curry} alt="Curries and sides at Nawab Gardens" className="aspect-square" parallax={false} />
           </div>
           <span className="display absolute -top-6 left-6 text-7xl italic text-primary/25">N</span>
         </div>
@@ -118,7 +117,6 @@ function VenuePanel({
     <div ref={ref} className="group relative min-h-[90svh] overflow-hidden bg-ink text-on-ink">
       <motion.img style={{ y, scale: 1.15 }} src={image} alt={alt} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-[2s] group-hover:scale-[1.2]" />
       <div className="bg-card-overlay absolute inset-0" />
-      <PhotoNote />
       <div className={`container-x relative flex min-h-[90svh] items-end pb-16 md:pb-24 ${flip ? "md:justify-end" : ""}`}>
         <Reveal className="max-w-xl">
           <p className="eyebrow text-primary-glow">{eyebrow}</p>
@@ -153,13 +151,13 @@ function Venues() {
         to="/asian-bistro" eyebrow="Destination 01" name={BISTRO.name} location="Acacia Mall, 2nd Floor, Kololo" cuisine="Pan-Asian"
         text="Experience a vibrant Pan-Asian dining destination featuring a diverse menu, elegant indoor dining and a rooftop terrace overlooking the Kampala skyline."
         highlights={["Restaurant", "Bar", "Rooftop Terrace", "Conference / Party Room", "Dine-in & takeaway"]}
-        image={IMG.rooftop} alt="A rooftop terrace at dusk overlooking a city skyline" cta="Explore Asian Bistro"
+        image={IMG.rooftop} alt="The rooftop terrace at Nawab Asian Bistro, looking over Kampala" cta="Explore Asian Bistro"
       />
       <VenuePanel
         to="/nawab-gardens" eyebrow="Destination 02" name={GARDENS.name} location="27 Bandali Rise, Bugolobi" cuisine="Indian" flip
         text="Escape into a beautiful garden dining experience where authentic Indian cuisine meets a peaceful, leafy atmosphere. The perfect destination for long lunches, intimate gatherings and memorable celebrations."
         highlights={["Restaurant", "Bar", "Gardens", "Rooftop Terrace", "Conference / Party Room"]}
-        image={IMG.garden} alt="Outdoor dining tables on a lawn beneath leafy trees" cta="Explore Nawab Gardens"
+        image={IMG.garden} alt="Outdoor tables on the lawn at Nawab Gardens" cta="Explore Nawab Gardens"
       />
     </section>
   );
@@ -169,7 +167,7 @@ const tastes = [
   { t: "Pan-Asian Cuisine", d: "A wide-ranging journey across Asian kitchens.", img: IMG.heroFood, span: "md:col-span-2 md:row-span-2" },
   { t: "Indian Cuisine", d: "Authentic spicing and generous, comforting plates.", img: IMG.indian, span: "md:col-span-2" },
   { t: "Curries", d: "Slow-built sauces, rich with aroma.", img: IMG.curry, span: "md:row-span-2" },
-  { t: "Biryani", d: "Fragrant rice dishes made for sharing.", img: IMG.indian, span: "", pos: "object-[50%_20%]" },
+  { t: "Tandoor plates", d: "Grilled favourites from the clay oven.", img: IMG.tikka, span: "", pos: "object-[50%_20%]" },
   { t: "Naan & Favourites", d: "Warm breads and much-loved accompaniments.", img: IMG.naan, span: "" },
   { t: "Vegetarian Options", d: "Plenty of choice, full of flavour.", img: IMG.veg, span: "md:col-span-2" },
   { t: "Vegan Options", d: "Thoughtful plant-based dishes, on request.", img: IMG.veg, span: "md:col-span-2", pos: "object-[50%_80%]" },
@@ -251,9 +249,9 @@ function Celebrate() {
     <section className="overflow-hidden bg-secondary py-28 md:py-36">
       <div className="container-x grid gap-12 lg:grid-cols-12">
         <div className="grid grid-cols-6 grid-rows-6 gap-4 lg:col-span-7" style={{ height: "min(80vh, 720px)" }}>
-          <ImageReveal src={IMG.wedding} alt="A candlelit wedding table in a garden at sunset" className="col-span-3 row-span-6" />
-          <ImageReveal src={IMG.celebration} alt="Friends raising glasses at a birthday dinner" className="col-span-3 row-span-3" />
-          <ImageReveal src={IMG.privateRoom} alt="A long table set in a private dining room" className="col-span-3 row-span-3" />
+          <ImageReveal src={IMG.wedding} alt="Tables set on the lawn at Nawab Gardens in the evening" className="col-span-3 row-span-6" />
+          <ImageReveal src={IMG.celebration} alt="Tables arranged on the lawn for a gathering" className="col-span-3 row-span-3" />
+          <ImageReveal src={IMG.privateRoom} alt="A long table set for a celebration at Nawab Asian Bistro" className="col-span-3 row-span-3" />
         </div>
         <Reveal className="flex flex-col justify-center lg:col-span-5">
           <SectionLabel>Celebrate with Nawab</SectionLabel>
@@ -307,7 +305,7 @@ function Story() {
   return (
     <section className="relative bg-ink text-on-ink">
       <div className="grid lg:grid-cols-2">
-        <ImageReveal src={IMG.indian} alt="Biryani in a copper pot surrounded by curries and naan" className="min-h-[60vh] lg:min-h-[90vh]" />
+        <ImageReveal src={IMG.indian} alt="Naan and rice at Nawab Gardens" className="min-h-[60vh] lg:min-h-[90vh]" />
         <Reveal className="flex flex-col justify-center px-6 py-24 md:px-16 lg:px-20">
           <SectionLabel>Our story</SectionLabel>
           <h2 className="display mt-6 text-5xl md:text-6xl">A Tradition of Flavour and Hospitality.</h2>

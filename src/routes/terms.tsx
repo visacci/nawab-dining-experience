@@ -16,7 +16,7 @@ export const Route = createFileRoute("/terms")({
       <h2>Reservation requests</h2>
       <p>Submitting a reservation request through this website does not guarantee a table. A booking is confirmed only when our team contacts you to confirm it.</p>
       <h2>Images</h2>
-      <p>Some images on this website are illustrative and may not depict our actual venues or dishes. They will be replaced with authentic photography.</p>
+      <p>Photographs show Nawab Asian Bistro, Nawab Gardens, and dishes from our kitchens. Menus and table settings can change.</p>
       <h2>Information</h2>
       <p>We aim to keep information accurate, but menus, facilities and availability may change. Please contact us to confirm details before your visit.</p>
     </LegalPage>

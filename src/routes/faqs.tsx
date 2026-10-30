@@ -37,7 +37,7 @@ const faqs: { q: string; a: React.ReactNode }[] = [
 function Faqs() {
   return (
     <>
-      <PageHero image={IMG.naan} alt="Freshly baked naan with chutneys" eyebrow="FAQs" title={<>Questions, <em className="text-primary-glow">answered.</em></>} />
+      <PageHero image={IMG.naan} alt="Naan and rice at Nawab Gardens" eyebrow="FAQs" title={<>Questions, <em className="text-primary-glow">answered.</em></>} />
       <section className="bg-paper py-24 md:py-32">
         <Reveal className="container-x max-w-4xl">
           <Accordion type="single" collapsible className="border-t border-border">

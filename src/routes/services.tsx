@@ -36,7 +36,7 @@ function Services() {
   return (
     <>
       <PageHero
-        image={IMG.wedding} alt="Candlelit wedding table in a garden" eyebrow="Services & experiences"
+        image={IMG.wedding} alt="Tables set on the lawn at Nawab Gardens in the evening" eyebrow="Services & experiences"
         title={<>Every Occasion Deserves Something <em className="text-primary-glow">Special.</em></>}
         text="From intimate dinners to milestone celebrations, our teams at both venues help you shape the day."
       >
@@ -45,21 +45,21 @@ function Services() {
 
       <FeatureSplit id="weddings" index="01" label="Weddings" title="Celebrate your union in style"
         text="Garden settings, elegant rooms and generous menus for wedding celebrations, receptions and family dinners around the big day. Tell us your vision and we'll talk through what's possible."
-        image={IMG.wedding} alt="Wedding reception table in a garden"><Cta /></FeatureSplit>
+        image={IMG.wedding} alt="Evening tables on the lawn at Nawab Gardens"><Cta /></FeatureSplit>
 
       <FeatureSplit id="parties" index="02" label="Parties & Celebrations" title="Moments worth raising a glass to" dark reverse
         text="Mark life's milestones with food, friends and a setting to remember."
         points={["Birthdays", "Anniversaries", "Family celebrations", "Private parties", "Group gatherings"]}
-        image={IMG.celebration} alt="Guests toasting at a birthday dinner"><CtaDark /></FeatureSplit>
+        image={IMG.celebration} alt="Tables arranged on the lawn for a gathering"><CtaDark /></FeatureSplit>
 
       <FeatureSplit id="corporate" index="03" label="Corporate Meetings" title="Business, made more pleasant"
         text="A calm, professional setting for meetings over a meal, with conference/party rooms available at both venues."
         points={["Business lunches", "Corporate meetings", "Professional gatherings", "Group dining"]}
-        image={IMG.privateRoom} alt="Private meeting and dining room"><Cta /></FeatureSplit>
+        image={IMG.privateRoom} alt="A long table set for a function at Nawab Asian Bistro"><Cta /></FeatureSplit>
 
       <FeatureSplit id="private" index="04" label="Private Events" title="Your own space, your own pace" dark reverse
         text="Reserve a private room or area for an occasion that's entirely yours — from a quiet family dinner to a larger gathering."
-        image={IMG.interior} alt="Elegant private dining area"><CtaDark /></FeatureSplit>
+        image={IMG.interior} alt="The dining floor at Nawab Asian Bistro"><CtaDark /></FeatureSplit>
 
       <section id="dining" className="scroll-mt-24 bg-paper py-28">
         <div className="container-x">

@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { ArrowRight, MapPin, Navigation, Phone, Mail } from "lucide-react";
 import type { ReactNode } from "react";
 import { Button } from "@/components/ui/button";
-import { ImageReveal, PhotoNote, Reveal, SectionLabel } from "./motion";
+import { ImageReveal, Reveal, SectionLabel } from "./motion";
 import { EnquiryForm } from "./EnquiryForm";
 import { directionsUrl, embedUrl } from "@/lib/site";
 import { IMG } from "@/lib/images";
@@ -38,7 +38,6 @@ export function FeatureSplit({
       <div className="container-x grid items-center gap-12 lg:grid-cols-12 lg:gap-20">
         <div className={cn("relative lg:col-span-7", reverse && "lg:order-2")}>
           <ImageReveal src={image} alt={alt} className="aspect-[4/3] w-full" />
-          <PhotoNote />
           {index && (
             <span className={cn("display absolute -top-10 text-[7rem] text-primary/20 md:text-[10rem]", reverse ? "-right-2" : "-left-2")}>
               {index}
@@ -66,10 +65,33 @@ export function FeatureSplit({
   );
 }
 
+export function PhotoGrid({
+  label,
+  images,
+}: {
+  label: string;
+  images: { src: string; alt: string }[];
+}) {
+  return (
+    <section className="bg-background py-24 md:py-32">
+      <div className="container-x">
+        <SectionLabel>{label}</SectionLabel>
+        <div className="mt-10 grid grid-cols-2 gap-3 md:grid-cols-3">
+          {images.map((img) => (
+            <div key={img.src} className="aspect-[4/3] overflow-hidden">
+              <img src={img.src} alt={img.alt} loading="lazy" className="h-full w-full object-cover" />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export function ReserveBand({ image = IMG.celebration }: { image?: string }) {
   return (
     <section className="relative overflow-hidden bg-ink py-32 text-center text-on-ink md:py-44">
-      <img src={image} alt="Guests sharing a candlelit dinner" loading="lazy" className="absolute inset-0 h-full w-full object-cover opacity-50" />
+      <img src={image} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover opacity-50" />
       <div className="absolute inset-0 bg-overlay" />
       <Reveal className="container-x relative">
         <SectionLabel className="justify-center text-primary-glow">Reservations</SectionLabel>

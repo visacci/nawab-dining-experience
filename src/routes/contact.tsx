@@ -22,7 +22,7 @@ export const Route = createFileRoute("/contact")({
 function Contact() {
   return (
     <>
-      <PageHero image={IMG.bar} alt="Warmly lit bar" eyebrow="Contact us" title={<>We'd Love to Hear <em className="text-primary-glow">From You.</em></>}
+      <PageHero image={IMG.bar} alt="The bar and terrace at Nawab Asian Bistro" eyebrow="Contact us" title={<>We'd Love to Hear <em className="text-primary-glow">From You.</em></>}
         text="Whether you're planning a visit, making a reservation or organising a special occasion, our team would be happy to assist." />
 
       <section className="bg-background py-24">

@@ -21,7 +21,7 @@ export const Route = createFileRoute("/about")({
 function About() {
   return (
     <>
-      <PageHero image={IMG.interior} alt="Elegant restaurant interior" eyebrow="About us" title={<>Generous flavour. <em className="text-primary-glow">Gracious</em> welcome.</>} />
+      <PageHero image={IMG.interior} alt="Guests dining at Nawab Asian Bistro" eyebrow="About us" title={<>Generous flavour. <em className="text-primary-glow">Gracious</em> welcome.</>} />
 
       <TextStatement label="Who we are">
         Nawab is a Kampala dining brand built on generous flavour, warm hospitality and memorable settings — two distinct venues, one way of welcoming guests.
@@ -30,7 +30,7 @@ function About() {
       <FeatureSplit
         label="Our story" title="Named for a love of fine food and gardens" dark
         text="Nawab has been part of Kampala's dining scene for many years, serving guests at several locations across the city. The brand's name recalls the Nawabs of South Asia, known for their love of fine food, gardens and gracious hospitality. That spirit continues to guide how we cook and welcome our guests."
-        image={IMG.indian} alt="Indian dishes served in brass and copper"
+        image={IMG.indian} alt="Naan and rice at Nawab Gardens"
       />
 
       <section className="bg-paper py-28">
@@ -77,7 +77,7 @@ function About() {
 
       <section className="bg-ink py-28 text-on-ink">
         <div className="container-x grid items-center gap-16 lg:grid-cols-2">
-          <ImageReveal src={IMG.curry} alt="A carefully prepared curry" className="aspect-[4/5]" />
+          <ImageReveal src={IMG.curry} alt="Curries and sides at Nawab Gardens" className="aspect-[4/5]" />
           <Reveal>
             <SectionLabel>Our commitment</SectionLabel>
             <h2 className="display mt-6 text-5xl md:text-6xl">What you can count on.</h2>
