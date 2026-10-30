@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: nawab-dining
+    runtime: node
+    buildCommand: npm install --include=dev && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: HOST
+        value: 0.0.0.0
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false

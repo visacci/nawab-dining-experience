@@ -12,4 +12,9 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  // Lovable's own build still forces the Cloudflare preset. Everywhere else
+  // (including Render) this produces a Node server in .output/server.
+  nitro: {
+    preset: "node-server",
+  },
 });
