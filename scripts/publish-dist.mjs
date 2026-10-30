@@ -19,6 +19,7 @@ const routes = [
   "/reserve",
   "/privacy",
   "/terms",
+  "/admin",
 ];
 
 rmSync(dist, { recursive: true, force: true });

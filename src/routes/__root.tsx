@@ -115,13 +115,14 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const reduce = useReducedMotion();
+  const isAdmin = pathname === "/admin" || pathname.startsWith("/admin/");
 
   return (
     <QueryClientProvider client={queryClient}>
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground">
         Skip to content
       </a>
-      <Header />
+      {isAdmin ? null : <Header />}
       <AnimatePresence mode="wait" initial={false}>
         <motion.main
           id="main"
@@ -134,7 +135,7 @@ function RootComponent() {
           <Outlet />
         </motion.main>
       </AnimatePresence>
-      <Footer />
+      {isAdmin ? null : <Footer />}
       <Toaster />
     </QueryClientProvider>
   );
