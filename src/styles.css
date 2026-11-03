@@ -126,3 +126,79 @@
 @utility animate-slow-zoom { animation: slow-zoom 9s cubic-bezier(.2,.7,.2,1) forwards; }
 @keyframes scroll-dot { 0% { transform: translateY(0); opacity: 1; } 80% { transform: translateY(14px); opacity: 0; } 100% { opacity: 0; } }
 @utility animate-scroll-dot { animation: scroll-dot 1.8s ease-in-out infinite; }
+
+.story-prose {
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  color: var(--foreground);
+}
+.story-prose :where(p) { margin: 1.05rem 0; }
+.story-prose :where(h2) {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+  margin: 2.5rem 0 0.85rem;
+}
+.story-prose :where(h3) {
+  font-family: var(--font-serif);
+  font-size: clamp(1.45rem, 2.4vw, 2rem);
+  font-weight: 500;
+  line-height: 1.15;
+  margin: 2rem 0 0.6rem;
+}
+.story-prose :where(blockquote) {
+  margin: 2.25rem 0;
+  border-left: 2px solid var(--primary);
+  padding-left: 1.25rem;
+  font-family: var(--font-serif);
+  font-size: clamp(1.55rem, 2.5vw, 2.15rem);
+  font-style: italic;
+  line-height: 1.3;
+}
+.story-prose :where(ul) { margin: 1.1rem 0; padding-left: 1.25rem; list-style: disc; }
+.story-prose :where(ol) { margin: 1.1rem 0; padding-left: 1.25rem; list-style: decimal; }
+.story-prose :where(li) { margin: 0.35rem 0; }
+.story-prose :where(a) {
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.story-prose :where(figure) { margin: 2.4rem 0; }
+.story-prose :where(figure img) {
+  width: 100%;
+  max-height: 36rem;
+  object-fit: cover;
+}
+.story-prose :where(figcaption) {
+  margin-top: 0.7rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+@media (min-width: 768px) {
+  .story-read figure {
+    width: calc(100% + 5rem);
+    margin-left: -2.5rem;
+  }
+}
+.story-editor {
+  min-height: 18rem;
+  outline: none;
+}
+.story-editor figure {
+  margin: 1.75rem 0;
+}
+.story-editor figure.is-selected {
+  outline: 1px solid var(--primary);
+  outline-offset: 8px;
+}
+.story-editor figcaption:empty::before {
+  content: "Add a caption";
+  color: var(--muted-foreground);
+}
+.story-editor img {
+  -webkit-user-drag: none;
+}

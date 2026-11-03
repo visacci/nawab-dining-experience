@@ -13,7 +13,6 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AsianBistroRouteImport } from './routes/asian-bistro'
-import { Route as BlogRouteImport } from './routes/blog'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as FaqsRouteImport } from './routes/faqs'
 import { Route as NawabGardensRouteImport } from './routes/nawab-gardens'
@@ -21,6 +20,8 @@ import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ReserveRouteImport } from './routes/reserve'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as TermsRouteImport } from './routes/terms'
+import { Route as BlogIndexRouteImport } from './routes/blog/index'
+import { Route as BlogSlugRouteImport } from './routes/blog/$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -40,11 +41,6 @@ const AdminRoute = AdminRouteImport.update({
 const AsianBistroRoute = AsianBistroRouteImport.update({
   id: '/asian-bistro',
   path: '/asian-bistro',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BlogRoute = BlogRouteImport.update({
-  id: '/blog',
-  path: '/blog',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -82,13 +78,22 @@ const TermsRoute = TermsRouteImport.update({
   path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/blog/$slug',
+  path: '/blog/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
   '/asian-bistro': typeof AsianBistroRoute
-  '/blog': typeof BlogRoute
   '/contact': typeof ContactRoute
   '/faqs': typeof FaqsRoute
   '/nawab-gardens': typeof NawabGardensRoute
@@ -96,13 +101,14 @@ export interface FileRoutesByFullPath {
   '/reserve': typeof ReserveRoute
   '/services': typeof ServicesRoute
   '/terms': typeof TermsRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/blog/': typeof BlogIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
   '/asian-bistro': typeof AsianBistroRoute
-  '/blog': typeof BlogRoute
   '/contact': typeof ContactRoute
   '/faqs': typeof FaqsRoute
   '/nawab-gardens': typeof NawabGardensRoute
@@ -110,6 +116,8 @@ export interface FileRoutesByTo {
   '/reserve': typeof ReserveRoute
   '/services': typeof ServicesRoute
   '/terms': typeof TermsRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/blog': typeof BlogIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -117,7 +125,6 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
   '/asian-bistro': typeof AsianBistroRoute
-  '/blog': typeof BlogRoute
   '/contact': typeof ContactRoute
   '/faqs': typeof FaqsRoute
   '/nawab-gardens': typeof NawabGardensRoute
@@ -125,6 +132,8 @@ export interface FileRoutesById {
   '/reserve': typeof ReserveRoute
   '/services': typeof ServicesRoute
   '/terms': typeof TermsRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/blog/': typeof BlogIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -133,7 +142,6 @@ export interface FileRouteTypes {
     | '/about'
     | '/admin'
     | '/asian-bistro'
-    | '/blog'
     | '/contact'
     | '/faqs'
     | '/nawab-gardens'
@@ -141,13 +149,14 @@ export interface FileRouteTypes {
     | '/reserve'
     | '/services'
     | '/terms'
+    | '/blog/$slug'
+    | '/blog/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
     | '/admin'
     | '/asian-bistro'
-    | '/blog'
     | '/contact'
     | '/faqs'
     | '/nawab-gardens'
@@ -155,13 +164,14 @@ export interface FileRouteTypes {
     | '/reserve'
     | '/services'
     | '/terms'
+    | '/blog/$slug'
+    | '/blog'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/admin'
     | '/asian-bistro'
-    | '/blog'
     | '/contact'
     | '/faqs'
     | '/nawab-gardens'
@@ -169,6 +179,8 @@ export interface FileRouteTypes {
     | '/reserve'
     | '/services'
     | '/terms'
+    | '/blog/$slug'
+    | '/blog/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -176,7 +188,6 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AdminRoute: typeof AdminRoute
   AsianBistroRoute: typeof AsianBistroRoute
-  BlogRoute: typeof BlogRoute
   ContactRoute: typeof ContactRoute
   FaqsRoute: typeof FaqsRoute
   NawabGardensRoute: typeof NawabGardensRoute
@@ -184,6 +195,8 @@ export interface RootRouteChildren {
   ReserveRoute: typeof ReserveRoute
   ServicesRoute: typeof ServicesRoute
   TermsRoute: typeof TermsRoute
+  BlogSlugRoute: typeof BlogSlugRoute
+  BlogIndexRoute: typeof BlogIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -214,13 +227,6 @@ declare module '@tanstack/react-router' {
       path: '/asian-bistro'
       fullPath: '/asian-bistro'
       preLoaderRoute: typeof AsianBistroRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/blog': {
-      id: '/blog'
-      path: '/blog'
-      fullPath: '/blog'
-      preLoaderRoute: typeof BlogRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -272,6 +278,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/blog/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -280,7 +300,6 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   AdminRoute: AdminRoute,
   AsianBistroRoute: AsianBistroRoute,
-  BlogRoute: BlogRoute,
   ContactRoute: ContactRoute,
   FaqsRoute: FaqsRoute,
   NawabGardensRoute: NawabGardensRoute,
@@ -288,6 +307,8 @@ const rootRouteChildren: RootRouteChildren = {
   ReserveRoute: ReserveRoute,
   ServicesRoute: ServicesRoute,
   TermsRoute: TermsRoute,
+  BlogSlugRoute: BlogSlugRoute,
+  BlogIndexRoute: BlogIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

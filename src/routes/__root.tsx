@@ -76,7 +76,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   head: () => ({
     meta: [
       { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
       { title: "Nawab Asian Bistro & Nawab Gardens — Kampala" },
       { name: "description", content: "Pan-Asian dining at Acacia Mall and Indian cuisine in a garden setting in Bugolobi." },
       { property: "og:type", content: "website" },

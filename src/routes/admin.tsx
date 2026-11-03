@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState, type FormEvent } from "react";
 import { LogOut, Trash2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import type { Tables } from "@/integrations/supabase/types";
+import { Stories } from "@/components/admin/Stories";
 import { Logo } from "@/components/site/Header";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -26,10 +27,7 @@ const KIND_LABEL: Record<string, string> = {
 
 export const Route = createFileRoute("/admin")({
   head: () => ({
-    meta: [
-      { title: "Staff — Nawab" },
-      { name: "robots", content: "noindex, nofollow" },
-    ],
+    meta: [{ title: "Staff — Nawab" }, { name: "robots", content: "noindex, nofollow" }],
   }),
   component: AdminPage,
 });
@@ -73,7 +71,7 @@ function AdminPage() {
         {!ready ? (
           <p className="text-on-ink-muted">Loading…</p>
         ) : session ? (
-          <Inbox email={session.user.email ?? "Staff"} />
+          <Desk email={session.user.email ?? "Staff"} />
         ) : (
           <Login />
         )}
@@ -92,17 +90,23 @@ function Login() {
     event.preventDefault();
     setPending(true);
     setError("");
-    const { error: signInError } = await supabase.auth.signInWithPassword({ email: email.trim(), password });
+    const { error: signInError } = await supabase.auth.signInWithPassword({
+      email: email.trim(),
+      password,
+    });
     setPending(false);
     if (signInError) setError(signInMessage(signInError.message));
   }
 
   return (
-    <form onSubmit={onSubmit} className="mx-auto mt-10 max-w-md bg-paper p-8 text-ink shadow-elegant sm:p-10">
+    <form
+      onSubmit={onSubmit}
+      className="mx-auto mt-10 max-w-md bg-paper p-8 text-ink shadow-elegant sm:p-10"
+    >
       <p className="eyebrow text-primary">Staff</p>
       <h1 className="mt-3 text-4xl">Sign in</h1>
       <p className="mt-3 text-sm text-muted-foreground">
-        Reservations, event enquiries and contact messages are listed after you sign in.
+        Reservations, messages and blog stories are waiting after you sign in.
       </p>
       <label className="mt-8 block text-sm">
         Email
@@ -131,6 +135,50 @@ function Login() {
         {pending ? "Signing in…" : "Sign in"}
       </Button>
     </form>
+  );
+}
+
+function Desk({ email }: { email: string }) {
+  const [tab, setTab] = useState<"inbox" | "blog">("inbox");
+  const [dirty, setDirty] = useState(false);
+
+  function select(next: "inbox" | "blog") {
+    if (next === tab) return;
+    if (dirty && !window.confirm("Leave this story? Unsaved changes will be lost.")) return;
+    setDirty(false);
+    setTab(next);
+  }
+
+  return (
+    <div>
+      <div className="mb-10 flex flex-wrap gap-2">
+        {(
+          [
+            ["inbox", "Inbox"],
+            ["blog", "Blog"],
+          ] as const
+        ).map(([id, label]) => (
+          <button
+            key={id}
+            type="button"
+            onClick={() => select(id)}
+            className={cn(
+              "border px-4 py-2 text-xs uppercase tracking-[0.16em]",
+              tab === id
+                ? "border-primary bg-primary text-primary-foreground"
+                : "border-on-ink/20 text-on-ink-muted",
+            )}
+          >
+            {label}
+          </button>
+        ))}
+      </div>
+      {tab === "inbox" ? (
+        <Inbox email={email} />
+      ) : (
+        <Stories email={email} onDirtyChange={setDirty} />
+      )}
+    </div>
   );
 }
 
@@ -167,13 +215,19 @@ function Inbox({ email }: { email: string }) {
 
   async function remove(id: string) {
     if (!window.confirm("Remove this enquiry? This cannot be undone.")) return;
-    const { data, error: deleteError } = await supabase.from("enquiries").delete().eq("id", id).select("id");
+    const { data, error: deleteError } = await supabase
+      .from("enquiries")
+      .delete()
+      .eq("id", id)
+      .select("id");
     if (deleteError) {
       setError(deleteError.message);
       return;
     }
     if (!data?.length) {
-      setError("That enquiry could not be removed. This account needs permission to delete rows in Supabase.");
+      setError(
+        "That enquiry could not be removed. This account needs permission to delete rows in Supabase.",
+      );
       return;
     }
     setRows((current) => current.filter((row) => row.id !== id));
@@ -194,7 +248,9 @@ function Inbox({ email }: { email: string }) {
             onClick={() => setFilter(item.id)}
             className={cn(
               "border px-4 py-2 text-xs uppercase tracking-[0.16em]",
-              filter === item.id ? "border-primary bg-primary text-primary-foreground" : "border-on-ink/20 text-on-ink-muted",
+              filter === item.id
+                ? "border-primary bg-primary text-primary-foreground"
+                : "border-on-ink/20 text-on-ink-muted",
             )}
           >
             {item.label}
@@ -236,7 +292,9 @@ function Inbox({ email }: { email: string }) {
                 <Detail label="Event" value={row.event_type} />
                 <Detail label="Subject" value={row.subject} />
               </dl>
-              {row.message ? <p className="mt-5 whitespace-pre-wrap text-sm leading-relaxed">{row.message}</p> : null}
+              {row.message ? (
+                <p className="mt-5 whitespace-pre-wrap text-sm leading-relaxed">{row.message}</p>
+              ) : null}
             </li>
           ))}
         </ul>
