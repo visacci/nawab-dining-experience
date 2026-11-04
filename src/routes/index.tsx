@@ -22,7 +22,7 @@ export const Route = createFileRoute("/")({
 
 function Hero() {
   const reduce = useReducedMotion();
-  const words = "Where Flavour Meets Experience.".split(" ");
+  const words = "A perfect spot to unwind".split(" ");
   return (
     <section className="relative flex min-h-[100svh] items-center overflow-hidden bg-ink text-on-ink">
       <img src={IMG.bar} alt="The bar and rooftop terrace at Nawab Asian Bistro" className="animate-slow-zoom absolute inset-0 h-full w-full object-cover" />
@@ -40,7 +40,7 @@ function Hero() {
           {words.map((w, i) => (
             <span key={i} className="inline-block overflow-hidden pb-2 pr-[0.25em] align-bottom">
               <motion.span
-                className={`inline-block ${w === "Experience." ? "italic text-primary-glow" : ""}`}
+                className={`inline-block ${w === "unwind" ? "italic text-primary-glow" : ""}`}
                 initial={reduce ? false : { y: "110%" }}
                 animate={{ y: 0 }}
                 transition={{ duration: 1, delay: 0.35 + i * 0.1, ease: [0.2, 0.7, 0.2, 1] }}
@@ -156,7 +156,7 @@ function Venues() {
       <VenuePanel
         to="/nawab-gardens" eyebrow="Destination 02" name={GARDENS.name} location="27 Bandali Rise, Bugolobi" cuisine="Indian" flip
         text="Escape into a beautiful garden dining experience where authentic Indian cuisine meets a peaceful, leafy atmosphere. The perfect destination for long lunches, intimate gatherings and memorable celebrations."
-        highlights={["Restaurant", "Bar", "Gardens", "Rooftop Terrace", "Conference / Party Room"]}
+        highlights={["Restaurant", "Bar", "Gardens", "Conference / Party Room"]}
         image={IMG.garden} alt="Outdoor tables on the lawn at Nawab Gardens" cta="Explore Nawab Gardens"
       />
     </section>
@@ -170,7 +170,6 @@ const tastes = [
   { t: "Tandoor plates", d: "Grilled favourites from the clay oven.", img: IMG.tikka, span: "", pos: "object-[50%_20%]" },
   { t: "Naan & Favourites", d: "Warm breads and much-loved accompaniments.", img: IMG.naan, span: "" },
   { t: "Vegetarian Options", d: "Plenty of choice, full of flavour.", img: IMG.veg, span: "md:col-span-2" },
-  { t: "Vegan Options", d: "Thoughtful plant-based dishes, on request.", img: IMG.veg, span: "md:col-span-2", pos: "object-[50%_80%]" },
 ];
 
 function Taste() {
@@ -209,7 +208,7 @@ function Taste() {
 const spaces = [
   { n: "01", t: "The Restaurant", d: "Beautiful indoor dining spaces, welcoming service and exceptional food.", img: IMG.interior, where: "Bistro · Gardens", to: "/asian-bistro", hash: "restaurant" },
   { n: "02", t: "The Bar", d: "A welcoming space for guests to unwind and enjoy their time.", img: IMG.bar, where: "Bistro · Gardens", to: "/asian-bistro", hash: "bar" },
-  { n: "03", t: "The Rooftop Terrace", d: "An elevated dining experience with beautiful city views.", img: IMG.rooftop, where: "Bistro · Gardens", to: "/asian-bistro", hash: "rooftop" },
+  { n: "03", t: "The Rooftop Terrace", d: "An elevated dining experience with beautiful city views.", img: IMG.rooftop, where: "Asian Bistro", to: "/asian-bistro", hash: "rooftop" },
   { n: "04", t: "Conference & Party Room", d: "A space for meetings, private gatherings and celebrations.", img: IMG.privateRoom, where: "Bistro · Gardens", to: "/services", hash: "corporate" },
   { n: "05", t: "The Gardens", d: "A peaceful green setting for outdoor dining and special occasions.", img: IMG.garden, where: "Nawab Gardens", to: "/nawab-gardens", hash: "gardens" },
 ];

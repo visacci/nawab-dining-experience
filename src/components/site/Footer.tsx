@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowUp, MapPin, Phone } from "lucide-react";
-import { BISTRO, GARDENS } from "@/lib/site";
+import { BISTRO, GARDENS, SOCIALS } from "@/lib/site";
 import { Logo } from "./Header";
 
 const quick = [
@@ -13,6 +13,24 @@ const quick = [
   { label: "FAQs", to: "/faqs" },
   { label: "Contact", to: "/contact" },
 ];
+
+function InstagramIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.6">
+      <rect x="3.5" y="3.5" width="17" height="17" rx="5" />
+      <circle cx="12" cy="12" r="3.8" />
+      <circle cx="17.4" cy="6.6" r="0.9" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+function TikTokIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-5 w-5" fill="currentColor">
+      <path d="M14.2 3c.3 2.2 1.6 3.8 3.8 4.1v2.4a6.7 6.7 0 0 1-3.8-1.2v6.2a5.6 5.6 0 1 1-5.6-5.6c.3 0 .6 0 .9.1v2.6a3 3 0 1 0 2.1 2.9V3h2.6Z" />
+    </svg>
+  );
+}
 
 export function Footer() {
   return (
@@ -53,19 +71,32 @@ export function Footer() {
             <div>
               <p className="font-serif text-xl">{GARDENS.name}</p>
               <p className="mt-2 flex gap-2 text-on-ink-muted"><MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary" />{GARDENS.address}</p>
-              <p className="mt-2 flex gap-2 text-on-ink-muted"><Phone className="mt-0.5 h-4 w-4 shrink-0 text-primary" />+256772727777 — <Link to="/contact" className="underline hover:text-on-ink">send an enquiry</Link></p>
-              <p className="mt-2 flex gap-2 text-on-ink-muted"><Phone className="mt-0.5 h-4 w-4 shrink-0 text-primary" />+256709743524 — <Link to="/contact" className="underline hover:text-on-ink">send an enquiry</Link></p>
+              <a href={`tel:${GARDENS.tel}`} className="mt-2 flex gap-2 text-on-ink-muted hover:text-on-ink"><Phone className="mt-0.5 h-4 w-4 shrink-0 text-primary" />{GARDENS.phone}</a>
+              <a href={`tel:${GARDENS.tel2}`} className="mt-2 flex gap-2 text-on-ink-muted hover:text-on-ink"><Phone className="mt-0.5 h-4 w-4 shrink-0 text-primary" />{GARDENS.phone2}</a>
             </div>
           </div>
         </div>
         <div className="lg:col-span-2">
           <h3 className="eyebrow mb-6 text-primary">Follow us</h3>
-          <p className="text-sm text-on-ink-muted">Official Instagram and Facebook pages will be linked here soon.</p>
+          <div className="flex gap-3">
+            {SOCIALS.map((s) => (
+              <a
+                key={s.label}
+                href={s.href}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={s.label}
+                className="flex h-11 w-11 items-center justify-center border border-on-ink/20 text-on-ink transition-colors hover:border-primary hover:bg-primary"
+              >
+                {s.label === "Instagram" ? <InstagramIcon /> : <TikTokIcon />}
+              </a>
+            ))}
+          </div>
         </div>
       </div>
       <div className="border-t border-on-ink/10">
         <div className="container-x flex flex-col items-center justify-between gap-4 py-6 text-xs text-on-ink-muted md:flex-row">
-          <p>© {new Date().getFullYear()} Nawab Asian Bistro & Nawab Gardens. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Nawab Asian Bistro & Nawab Gardens. All rights reserved. Credits to Axhela Digital agency</p>
           <div className="flex items-center gap-6">
             <Link to="/privacy" className="hover:text-on-ink">Privacy Policy</Link>
             <Link to="/terms" className="hover:text-on-ink">Terms & Conditions</Link>

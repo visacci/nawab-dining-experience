@@ -11,7 +11,7 @@ export const Route = createFileRoute("/nawab-gardens")({
   head: () => ({
     meta: [
       { title: "Nawab Gardens — Indian Cuisine in a Garden Setting, Bugolobi" },
-      { name: "description", content: "Authentic Indian cuisine at 27 Bandali Rise, Bugolobi. Garden dining, bar, rooftop terrace and a conference/party room for gatherings." },
+      { name: "description", content: "Authentic Indian cuisine at 27 Bandali Rise, Bugolobi. Garden dining, a bar and a conference/party room for gatherings." },
       { property: "og:title", content: "Nawab Gardens — Where Nature Meets Exceptional Dining" },
       { property: "og:description", content: "Indian cuisine in a peaceful garden setting in Bugolobi, Kampala." },
     ],
@@ -85,13 +85,7 @@ function Gardens() {
       />
 
       <FeatureSplit
-        id="rooftop" index="03" label="Rooftop Terrace" title="An elevated corner of the gardens" dark
-        text="Evenings at Nawab Gardens move outdoors, with tables set across the lawn beside the thatched dining room. Ask our team about the rooftop terrace when you are planning a visit or a private gathering."
-        image={GARDENS_IMG.evening} alt="Tables set on the lawn at Nawab Gardens in the evening"
-      />
-
-      <FeatureSplit
-        id="conference" index="04" label="Conference / Party Room" title="Space for every gathering" reverse
+        id="conference" index="03" label="Conference / Party Room" title="Space for every gathering" dark
         text="A versatile room for meetings, private parties and celebrations, supported by the Nawab Gardens kitchen and team. Share your plans and we'll help shape the occasion."
         points={["Meetings", "Private parties", "Birthdays & anniversaries", "Family celebrations"]}
         image={GARDENS_IMG.lawnSet} alt="Tables arranged on the lawn for a gathering"
@@ -115,7 +109,15 @@ function Gardens() {
         ]}
       />
 
-      <LocationSection venue={GARDENS.name} address={GARDENS.address} phone={null} mapsQuery={GARDENS.mapsQuery} />
+      <LocationSection
+        venue={GARDENS.name}
+        address={GARDENS.address}
+        phone={GARDENS.phone}
+        tel={GARDENS.tel}
+        phone2={GARDENS.phone2}
+        tel2={GARDENS.tel2}
+        mapsQuery={GARDENS.mapsQuery}
+      />
     </div>
   );
 }

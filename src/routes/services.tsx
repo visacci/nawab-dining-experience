@@ -36,7 +36,7 @@ function Services() {
   return (
     <>
       <PageHero
-        image={IMG.wedding} alt="Tables set on the lawn at Nawab Gardens in the evening" eyebrow="Services & experiences"
+        image={IMG.weddingCouple} alt="A couple in wedding attire on the lawn at Nawab Gardens" eyebrow="Services & experiences"
         title={<>Every Occasion Deserves Something <em className="text-primary-glow">Special.</em></>}
         text="From intimate dinners to milestone celebrations, our teams at both venues help you shape the day."
       >
@@ -45,7 +45,7 @@ function Services() {
 
       <FeatureSplit id="weddings" index="01" label="Weddings" title="Celebrate your union in style"
         text="Garden settings, elegant rooms and generous menus for wedding celebrations, receptions and family dinners around the big day. Tell us your vision and we'll talk through what's possible."
-        image={IMG.wedding} alt="Evening tables on the lawn at Nawab Gardens"><Cta /></FeatureSplit>
+        image={IMG.weddingCouple} alt="A couple in wedding attire on the lawn at Nawab Gardens"><Cta /></FeatureSplit>
 
       <FeatureSplit id="parties" index="02" label="Parties & Celebrations" title="Moments worth raising a glass to" dark reverse
         text="Mark life's milestones with food, friends and a setting to remember."

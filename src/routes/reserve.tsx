@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Phone, Mail, Info } from "lucide-react";
+import { Phone, Info } from "lucide-react";
 import { EnquiryForm } from "@/components/site/EnquiryForm";
 import { Reveal, SectionLabel } from "@/components/site/motion";
 import { IMG } from "@/lib/images";
-import { BISTRO } from "@/lib/site";
+import { BISTRO, GARDENS } from "@/lib/site";
 
 export const Route = createFileRoute("/reserve")({
   head: () => ({
@@ -28,7 +28,8 @@ function Reserve() {
           <h1 className="display mt-6 text-5xl md:text-7xl">Your Table Is Waiting.</h1>
           <div className="mt-10 space-y-4 text-sm text-on-ink/85">
             <a href={`tel:${BISTRO.tel}`} className="flex gap-3 hover:text-primary-glow"><Phone className="h-5 w-5 text-primary-glow" />Asian Bistro: {BISTRO.phone}</a>
-            <p className="flex gap-3"><Mail className="h-5 w-5 text-primary-glow" />Nawab Gardens: please use this form — phone number coming soon.</p>
+            <a href={`tel:${GARDENS.tel}`} className="flex gap-3 hover:text-primary-glow"><Phone className="h-5 w-5 text-primary-glow" />Nawab Gardens: {GARDENS.phone}</a>
+            <a href={`tel:${GARDENS.tel2}`} className="flex gap-3 hover:text-primary-glow"><Phone className="h-5 w-5 text-primary-glow" />Nawab Gardens: {GARDENS.phone2}</a>
           </div>
         </div>
       </div>

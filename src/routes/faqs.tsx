@@ -4,7 +4,7 @@ import { PageHero } from "@/components/site/PageHero";
 import { ReserveBand } from "@/components/site/blocks";
 import { Reveal } from "@/components/site/motion";
 import { IMG } from "@/lib/images";
-import { BISTRO } from "@/lib/site";
+import { BISTRO, GARDENS } from "@/lib/site";
 
 export const Route = createFileRoute("/faqs")({
   head: () => ({
@@ -31,7 +31,7 @@ const faqs: { q: string; a: React.ReactNode }[] = [
   { q: "Are spaces available for corporate meetings?", a: <>Both venues list a conference / party room. Please contact us to check availability and arrangements for your meeting.</> },
   { q: "Can I book a private event?", a: <>Yes, please send an <Link to="/services" hash="enquire" className="text-primary underline">event enquiry</Link> and our team will get back to you with options.</> },
   { q: "What are your opening hours?", a: <>Please contact the restaurant for current opening hours.</> },
-  { q: "How do I contact the restaurants?", a: <>Call Nawab Asian Bistro on <a href={`tel:${BISTRO.tel}`} className="text-primary underline">{BISTRO.phone}</a>. The Nawab Gardens phone number will be shared soon — in the meantime, use our <Link to="/contact" className="text-primary underline">contact form</Link>.</> },
+  { q: "How do I contact the restaurants?", a: <>Call Nawab Asian Bistro on <a href={`tel:${BISTRO.tel}`} className="text-primary underline">{BISTRO.phone}</a>. Call Nawab Gardens on <a href={`tel:${GARDENS.tel}`} className="text-primary underline">{GARDENS.phone}</a> or <a href={`tel:${GARDENS.tel2}`} className="text-primary underline">{GARDENS.phone2}</a>.</> },
 ];
 
 function Faqs() {

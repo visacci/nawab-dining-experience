@@ -66,6 +66,7 @@ const jsonLd = {
       "@type": "Restaurant",
       name: "Nawab Gardens",
       servesCuisine: "Indian",
+      telephone: "+256772727777",
       address: { "@type": "PostalAddress", streetAddress: "27 Bandali Rise", addressLocality: "Bugolobi, Kampala", addressCountry: "UG" },
       acceptsReservations: true,
     },

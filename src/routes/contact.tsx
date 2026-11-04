@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { MapPin, Navigation, Phone, Mail, CalendarCheck } from "lucide-react";
+import { MapPin, Navigation, Phone, CalendarCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PageHero } from "@/components/site/PageHero";
 import { EnquiryForm } from "@/components/site/EnquiryForm";
@@ -11,7 +11,7 @@ export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
       { title: "Contact Nawab — Asian Bistro, Kololo & Gardens, Bugolobi" },
-      { name: "description", content: "Call Nawab Asian Bistro on +256 706 171712, get directions to Acacia Mall or 27 Bandali Rise, or send us a message." },
+      { name: "description", content: "Call Nawab Asian Bistro on +256 706 171712 or Nawab Gardens on +256 772 727777. Directions to Acacia Mall and 27 Bandali Rise, or send us a message." },
       { property: "og:title", content: "Contact Nawab" },
       { property: "og:description", content: "Locations, directions and a contact form for both Nawab venues in Kampala." },
     ],
@@ -37,13 +37,12 @@ function Contact() {
                 <p className="eyebrow text-primary">{cuisine}</p>
                 <h2 className="mt-3 text-4xl">{v.name}</h2>
                 <p className="mt-5 flex gap-3 text-muted-foreground"><MapPin className="h-5 w-5 shrink-0 text-primary" />{v.address}</p>
-                <p className="mt-3 flex gap-3 text-muted-foreground"><Phone className="h-5 w-5 shrink-0 text-primary" />{v.phone ?? "To be provided"}</p>
+                <a href={`tel:${v.tel}`} className="mt-3 flex gap-3 text-muted-foreground hover:text-foreground"><Phone className="h-5 w-5 shrink-0 text-primary" />{v.phone}</a>
+                {v.phone2 && (
+                  <a href={`tel:${v.tel2}`} className="mt-3 flex gap-3 text-muted-foreground hover:text-foreground"><Phone className="h-5 w-5 shrink-0 text-primary" />{v.phone2}</a>
+                )}
                 <div className="mt-8 flex flex-wrap gap-3">
-                  {v.phone ? (
-                    <Button asChild variant="brand" size="lg" className="h-12"><a href={`tel:${BISTRO.tel}`}><Phone /> Call us</a></Button>
-                  ) : (
-                    <Button asChild variant="brand" size="lg" className="h-12"><a href="#message"><Mail /> Contact us</a></Button>
-                  )}
+                  <Button asChild variant="brand" size="lg" className="h-12"><a href={`tel:${v.tel}`}><Phone /> Call us</a></Button>
                   <Button asChild variant="ghostDark" size="lg" className="h-12"><a href={directionsUrl(v.mapsQuery)} target="_blank" rel="noreferrer"><Navigation /> Directions</a></Button>
                   <Button asChild variant="ghostDark" size="lg" className="h-12"><Link to="/reserve"><CalendarCheck /> Reserve</Link></Button>
                 </div>

@@ -26,6 +26,7 @@ import bowls from "@/assets/gardens/bowls.webp";
 import diningRoom from "@/assets/gardens/dining-room.webp";
 import lawnSet from "@/assets/gardens/lawn-set.webp";
 import evening from "@/assets/gardens/evening.webp";
+import weddingCouple from "@/assets/gardens/wedding-couple.jpg";
 import guests from "@/assets/gardens/guests.webp";
 import deck from "@/assets/gardens/deck.webp";
 import meatballs from "@/assets/gardens/meatballs.webp";
@@ -61,6 +62,7 @@ export const GARDENS_IMG = {
   diningRoom,
   lawnSet,
   evening,
+  weddingCouple,
   guests,
   deck,
   meatballs,
@@ -78,6 +80,7 @@ export const IMG = {
   bar: terraceBar,
   privateRoom: banquet,
   wedding: evening,
+  weddingCouple,
   curry: bowls,
   veg,
   naan,

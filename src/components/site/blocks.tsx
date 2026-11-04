@@ -115,12 +115,16 @@ export function LocationSection({
   address,
   phone,
   tel,
+  phone2,
+  tel2,
   mapsQuery,
 }: {
   venue: string;
   address: string;
   phone: string | null;
   tel?: string;
+  phone2?: string | null;
+  tel2?: string;
   mapsQuery: string;
 }) {
   return (
@@ -135,6 +139,9 @@ export function LocationSection({
               <a href={`tel:${tel}`} className="flex gap-3 hover:text-primary"><Phone className="h-5 w-5 shrink-0 text-primary" />{phone}</a>
             ) : (
               <p className="flex gap-3 text-muted-foreground"><Mail className="h-5 w-5 shrink-0 text-primary" />Phone number coming soon — please use the enquiry form and our team will reply.</p>
+            )}
+            {phone2 && (
+              <a href={`tel:${tel2}`} className="flex gap-3 hover:text-primary"><Phone className="h-5 w-5 shrink-0 text-primary" />{phone2}</a>
             )}
           </div>
           <div className="mt-8 flex flex-wrap gap-3">
